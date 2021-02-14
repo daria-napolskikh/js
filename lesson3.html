@@ -1,0 +1,109 @@
+<script>
+   //1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100 
+    
+    // это решение показывалось на уроке как корректное, но у меня есть вопрос: если стоит i < num/2 (в стр 9), то в списке простых чисел коварно выводится 4, но если поставить i < num, то список простых чисел корректный, скажите, пожалуйста, зачем вообще ставить num/2?
+    
+//    var x = 2;
+//        function checkPrime(num){ 
+//        var i = 2;
+//        while(i < num/2){     
+//            if(num % i == 0){  
+//                return false;
+//            }
+//            i++; 
+//        }
+//        return true 
+//    }
+//    
+//    while(x <= 11){
+//        if(checkPrime(x)){
+//            console.log(x)
+//        }
+//        x++;
+//    }
+    
+
+// вот решение с массивами:    
+    
+    function isPrime(num){
+        var noPrimes = [];
+        var primes = [];
+        
+        var i = 2
+        
+        while(i <= num){
+  
+            if(!noPrimes[i]){
+                
+                primes.push(i);
+               
+                for (var n = i*2; n <= num; n += i){
+                    noPrimes[n] = true;
+                } 
+             }
+        i++
+        }
+        return primes;
+    }
+    
+    document.write(isPrime(100))
+    
+   
+  
+  document.write("<br>");
+    
+  //2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины. Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
+//3. Товары в корзине хранятся в массиве. Задачи:
+//a) Организовать такой массив для хранения товаров в корзине;
+//b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.      
+
+    
+    
+    var cart = [
+        {
+            title: "Товар 1",
+            price: 100,
+            amount: 2
+        },
+        {
+            title: "Товар 2",
+            price: 50,
+            amount: 1
+        },
+        {
+            title: "Товар 3",
+            price: 100,
+            amount: 3
+        },
+        {
+            title: "Товар 4",
+            price: 150,
+            amount: 2
+        },
+    ]
+    
+    for(var item of cart){
+        document.write(item.title + " стоит " +(item.price*item.amount) +"<br>"); 
+    }
+    
+    function countBasketPrice(cart){
+        var sum = 0;
+        for(var item of cart){
+            sum += (item.price * item.amount)
+        }
+        return sum
+    }
+    document.write("Сумма товаров = " + countBasketPrice(cart));
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
